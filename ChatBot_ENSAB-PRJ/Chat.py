@@ -70,13 +70,24 @@ class SaisirInfoPersonnel(tk.Tk):
         background = background.resize((550, 400), Image.ANTIALIAS)
         background = ImageTk.PhotoImage(background)
 
+        ensa = Image.open("images/login (2).png")
+        ensa = ensa.resize((200, 80), Image.ANTIALIAS)
+        ensa = ImageTk.PhotoImage(ensa)
+
+        b = tk.Label(self, image=ensa, compound="left", fg="white", bg="#fbd324", font="lucida 10 bold",
+                     padx=15)
+        b.place(x=5, y=2)
+
         upload_image = Image.open('images/upload_ca.png')
         upload_image = upload_image.resize((25, 25), Image.ANTIALIAS)
         upload_image = ImageTk.PhotoImage(upload_image)
 
+
+
         self.user_image = 'images/user.png'
 
         tk.Label(self.frame, image=background).place(x=0, y=0)
+
 
         self.profile_label = tk.Label(self.frame, bg="grey")
         self.profile_label.place(x=350, y=75, width=150, height=140)
@@ -128,7 +139,7 @@ class SaisirInfoPersonnel(tk.Tk):
         #                         command=self.process_data, bg="#16cade", relief="solid", bd=2)
 
         submit_button.place(x=200, y=275)
-
+        self.resizable(0,0)
         self.mainloop()
 
     def add_photo(self):
@@ -253,9 +264,12 @@ class ChatScreen(tk.Canvas):
         t_label = tk.Label(m_frame, bg="#d9d5d4", text=datetime.now().strftime('%H:%M'), font="lucida 9 bold")
         t_label.pack()
 
-        b = tk.Label(self, image=self.user_image,  compound="left", fg="white", bg="orange", font="lucida 10 bold",
+        b = tk.Label(self, image=self.user_image, compound="left", fg="white", bg="orange", font="lucida 10 bold",
                      padx=15)
         b.place(x=10, y=10)
+
+        c = tk.Label(self, text=self.parent.user, bg="#87ceeb", font="lucida 14 bold")
+        c.place(x=60, y=10)
 
         m_label = tk.Label(m_frame, wraplength=250, text=f"Chatbot ENSAB 2021-2022",
                            font="lucida 10 bold", bg="yellow")
@@ -268,7 +282,7 @@ class ChatScreen(tk.Canvas):
         print(user)
 
 
-        resp="Hi ",user," good morning I'm a chatbot developed by ENSAB Students "
+        resp="Hi "+user+" good morning I'm a chatbot developed by ENSAB Students "
         print(resp)
         self.received_message_format(resp)
 
